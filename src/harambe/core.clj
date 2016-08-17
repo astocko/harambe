@@ -21,6 +21,5 @@
 ;;              :on-close #(prn %1 %2)))
 
 
-;; (chat/post-message "#bingo" "fuck off @harambe" :as_user true)
 
 
