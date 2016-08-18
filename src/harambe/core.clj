@@ -2,9 +2,9 @@
   (:gen-class))
 
 (require '[harambe.slack.state :as state])
+(require '[harambe.slack.rtm.core :as rtm])
 (require '[harambe.slack.web.api :as api])
 (require '[harambe.slack.web.chat :as chat])
-(require '[harambe.slack.rtm.core :as rtm])
 (require '[gniazdo.core :as ws])
 
 (defn -main
@@ -12,14 +12,15 @@
   [& args]
   (println "Hello, World!"))
 
+(defn on-close [conn config status])
+
 (state/init)
-;; (def info (rtm/start))
 
-;; (def socket (ws/connect
-;;              (:url info)
-;;              :on-receive #(prn 'received %)
-;;              :on-close #(prn %1 %2)))
+(def rtm-info (atom nil))
 
+(defn disconnect []
+  (rtm/send-event (:dispatcher @rtm-info) :close))
 
-
+(reset! rtm-info (rtm/connect
+                :on-close (fn [{:keys [status reason]}] (prn status reason))))
 

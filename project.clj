@@ -8,8 +8,9 @@
                  [cheshire "5.6.3"]
                  [clj-http "2.2.0"]
                  [environ "1.1.0"]
-                 [stylefruits/gniazdo "1.0.0"]
                  [mount "0.1.10"]
+                 [robert/bruce "0.8.0"]
+                 [stylefruits/gniazdo "1.0.0"]
                  ]
   :main ^:skip-aot harambe.core
   :target-path "target/%s"
